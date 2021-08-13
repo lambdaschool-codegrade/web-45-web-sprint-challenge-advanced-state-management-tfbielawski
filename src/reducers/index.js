@@ -1,8 +1,57 @@
+import {FETCH_START, FETCH_SUCCESS, FETCH_FAIL, ADD_SMURF} from "./../actions";
 
-export const initialState = {
+
+//Define initial state
+export const initialState = 
+{
+    smurfs: [],
+    isLoading: false,
+    error: "SMURFING ERROR"
 }
 
-const reducer = ()=>{
+
+//Reducer function, assign initial state to state
+export const reducer = (state = initialState, action) =>
+{
+    switch (action.type) 
+    {
+        //Start the fetch
+        case(FETCH_START):
+          return({
+            ...state,
+            isLoading: true,
+            error: ''
+          });
+
+          //Success case
+        case(FETCH_SUCCESS):
+          return({
+            ...state,
+            monster: action.payload,
+            isLoading: false
+          });
+
+          //Case to apply
+        case(ADD_SMURF):
+        return ({...state, 
+            smurfs: [state.smurfs, action.payload]});
+    
+          //Fail case
+        case(FETCH_FAIL):
+          return({
+            ...state,
+            error: action.payload,
+            isLoading: false
+          })
+
+          case (ERROR):
+              return ({...state,
+                error: action.payload,})
+
+          //Default case
+        default:
+          return state;
+      }
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
