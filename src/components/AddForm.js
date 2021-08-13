@@ -20,7 +20,7 @@ const AddForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            props.setError("PLEASE ENTER A VALUE IN EVERY FIELD");
+            props.setError("Name, position and nickname fields are required.");
         }
         //
         else {
