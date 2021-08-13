@@ -1,8 +1,18 @@
+/**
+ * Tom Bielawski
+ * Lambda School WEB 45
+ * 3.2.5 Advanced State Management Sprint Challenge 
+ * 8/13/2021
+ */
+
+//Imports
+
 import React, { useState } from 'react';
 import {connect} from "react-redux";
 import { setError, addSmurf } from '../actions';
 
-const AddForm = (props) => {
+const AddForm = (props) =>
+ {
     const [state, setState] = useState({
         name:"",
         position:"",
@@ -10,20 +20,25 @@ const AddForm = (props) => {
         description:""
     });
 
-    const handleChange = e => {
+    const handleChange = e => 
+    {
         setState({
             ...state,
             [e.target.name]:e.target.value
         });
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = e => 
+    {
         e.preventDefault();
-        if (state.name === "" || state.position === "" || state.nickname === "") {
+        //If entered data meets one of these, call the error
+        if (state.name === "" || state.position === "" || state.nickname === "") 
+        {
+            //Replaced static variable
             props.setError("Name, position and nickname fields are required.");
         }
         
-        //
+        //Otherwise, add a smurf
         else {
             // setState();
             props.addSmurf(state);
@@ -50,7 +65,7 @@ const AddForm = (props) => {
                 <label htmlFor="description">Description:</label><br/>
                 <textarea onChange={handleChange} value={state.description} name="description" id="description" />
             </div>
-            {
+            {   //Replaced static variables
                 props.error && <div data-testid="errorAlert" className="alert alert-danger" role="alert">Error: {props.error}</div>
             }
             <button>Submit Smurf</button>
@@ -58,15 +73,16 @@ const AddForm = (props) => {
     </section>);
 }
 
-//
-const mapStateToProps = (state) =>{
+//Mapping state to props
+const mapStateToProps = (state) =>
+{
     return {
         smurfs: state.smurfs,
         error: state.error
     }
 }
 
-//
+//Export and connect
 export default connect(mapStateToProps, {setError, addSmurf}) (AddForm);
 
 //Task List:

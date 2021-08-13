@@ -1,3 +1,10 @@
+/**
+ * Tom Bielawski
+ * Lambda School WEB 45
+ * 3.2.5 Advanced State Management Sprint Challenge 
+ * 8/13/2021
+ */
+//Imports
 import axios from 'axios';
 
 //Fetch smurf function
@@ -5,20 +12,20 @@ export const fetchSmurf = () =>
 {
     return(dispatch) =>
     {
-        //
+        //Dispatch calls fetchStart
         dispatch(fetchStart());
 
-        //
+        //Get the data from api
         axios.get("http://localhost:3333/smurfs")
 
-        //
+        //Assign the data
         .then(res =>
             {
                 console.log(res.data)
                 dispatch(fetchSuccess(res.data));
             })
 
-        //
+        //Catch errors
         .catch(err =>{dispatch(fetchFail(err)); })
         
     }
@@ -52,7 +59,7 @@ export const fetchFail = (error)=>
     return({type: FETCH_FAIL, payload: error});
 }
 
-//
+//Define and export setError
 export const SET_ERROR = "SET_ERROR";
 export const setError = (error) =>
 {

@@ -1,3 +1,11 @@
+/**
+ * Tom Bielawski
+ * Lambda School WEB 45
+ * 3.2.5 Advanced State Management Sprint Challenge 
+ * 8/13/2021
+ */
+
+//Imports
 import {FETCH_START, FETCH_SUCCESS, FETCH_FAIL, ADD_SMURF, SET_ERROR } from "./../actions";
 
 
@@ -44,6 +52,7 @@ export const reducer = (state = initialState, action) =>
             isLoading: false
           })
 
+          //Error case
           case (SET_ERROR):
               return ({...state,
                 error: action.payload})
